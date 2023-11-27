@@ -1,0 +1,210 @@
+@layer reset, utility, typography, theme;
+@layer reset {
+	/* 
+    This reset is based on Elad Shechter's The New CSS Reset (https://elad2412.github.io/the-new-css-reset/), to which 
+    I am deeply indebted. My changes are not a criticism of his work but a result of different philosophies and 
+    priorities. Please see my commit comments on GitHub if you are interested in my thoughts on the changes I made.
+  */
+	/*
+     Remove the styles set by the "User-Agent Stylesheet" using a 
+     zero-specificity selector.
+       - Exclude `svg *` since this is not meant to reset SVG rendering.
+       - Exclude `display` property since it is fundamental to layout (Opinionated)
+       - Exclude `outline` property to ensure accessibility. (Opinionated)
+       - Due to browser bugs:
+         - Exclude `html` - Chrome hyphenation bug
+         - Exclude `symbol *` - Firefox SVG sprite
+         - Exclude `div` & `span` - Chrome performance issue
+  */
+	*:where(:not(html, div, span):not(svg *, symbol *)) {
+		all: unset;
+		list-style: none;
+		display: revert;
+		outline: revert;
+	}
+	/*
+    Reset placeholder text style (pseudo elements are not included in 
+    the main reset) 
+  */
+	::-webkit-input-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::-moz-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	/* Use border-box sizing per industry standard (Opinionated) */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	/* Prevent iOS Safari resizing text in landscape*/
+	:where(html) {
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+	/* Set pointer on anchor and buttons since this is expected behavior */
+	:where(a, button) {
+		cursor: pointer;
+	}
+	/* Constrain media elements to their parent (Opinionated) */
+	:where(img, iframe, canvas, svg, video, audio) {
+		max-inline-size: 100%;
+		max-block-size: 100%;
+	}
+	/* Revert the 'white-space' property for textarea elements on Safari */
+	:where(textarea) {
+		white-space: pre-wrap;
+	}
+	/* Set white-space for pre element so line spacing is kept */
+	:where(pre) {
+		white-space: pre;
+	}
+	/* Restore hidden attribute */
+	:where([hidden]) {
+		display: none;
+	}
+	/* Restore contenteditable attribute */
+	:where([contenteditable]:not([contenteditable='false'])) {
+		-moz-user-modify: read-write;
+		-webkit-user-modify: read-write;
+		-webkit-user-select: auto;
+		-moz-user-select: auto;
+		user-select: auto;
+	}
+	/* Restore draggable attribute */
+	:where([draggable='true']) {
+		-webkit-user-drag: element;
+	}
+	/* Restore dialog positioning */
+	:where(dialog) {
+		position: absolute;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		margin: auto;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+	:where(dialog:modal) {
+		position: fixed;
+		inset-block-start: 0;
+		inset-block-end: 0;
+		max-width: calc(100% - 6px - 2em);
+		max-height: calc(100% - 6px - 2em);
+	}
+}
+@layer typography {
+	/* WCAG guidelines stipulate a line height of 1.5 for body text.  However, this is not great for headers etc. 
+     This sets a default that is 1.5 for body text but smaller for bigger text. */
+	* {
+		line-height: calc(1em + 0.5rem);
+	}
+	/* Use system font stack by default*/
+	body {
+		font-family: system-ui, sans-serif;
+	}
+	/* Monospaced font stack */
+	code,
+	.monospace {
+		font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+			Consolas, 'DejaVu Sans Mono', monospace;
+	}
+}
+
+/*# sourceMappingURL=fab.css.map */
+@layer theme {
+	:root {
+		--color-background: #f2e9e4;
+		--color-font: #222831;
+		--color-card: #eeeeee;
+		--color-text: #222831;
+		--color-card-border: #393e46;
+		--color-light-text: #ffffff;
+		--color-card-title: #393e46;
+	}
+}
+
+html {
+	color: var(--color-font);
+	background-color: var(--color-background);
+}
+body {
+	margin: auto;
+	max-width: 1000px;
+}
+header h1 {
+	text-align: center;
+	font-size: 3rem;
+}
+
+main {
+	padding: 15px;
+}
+main #cards {
+	margin-top: 10px;
+	display: -ms-grid;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 10px;
+}
+main .card {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border: 3px solid var(--color-card-border);
+	border-radius: 10px;
+	background-color: var(--color-card);
+}
+main .title {
+	width: 100%;
+	padding: 0.2em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	border-radius: 7px 7px 0 0;
+	background-color: var(--color-card-title);
+	color: var(--color-light-text);
+	font-weight: bold;
+	font-size: 1.3rem;
+	text-shadow: 1px 1px 2px #000000;
+}
+main .title a:first-child {
+	-webkit-box-flex: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+main .title img {
+	height: 1.3em;
+}
+main .screenshot {
+	width: 85%;
+	margin: 10px;
+	text-align: center;
+}
+main .screenshot img {
+	width: 100%;
+	height: auto;
+	-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+}

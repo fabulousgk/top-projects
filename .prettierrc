@@ -1,0 +1,7 @@
+{
+	"plugins": ["@awmottaz/prettier-plugin-void-html"],
+	"semi": true,
+	"singleQuote": true,
+	"printWidth": 80,
+	"useTabs": true
+}

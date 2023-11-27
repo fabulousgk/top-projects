@@ -1,0 +1,25 @@
+{
+	"name": "Brian Lister's The Odin Project Portfolio",
+	"short_name": "TOP Projects",
+	"description": "A portfolio of projects completed by Brian Lister through The Odin Project, a full-stack web development curriculum.",
+	"start_url": "/index.html",
+	"scope": ".",
+	"background_color": "#f2e9e4",
+	"theme_color": "#ebcbae",
+	"display": "browser",
+	"orientation": "portrait-primary",
+	"dir": "ltr",
+	"lang": "en-US",
+	"icons": [
+		{
+			"src": "assets/images/icons/icon-192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "assets/images/icons/icon-512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}
