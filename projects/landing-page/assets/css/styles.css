@@ -55,7 +55,7 @@ body {
 	justify-content: space-between;
 	gap: 30px;
 
-	padding: 15px;
+	padding: 50px;
 
 	color: white;
 }
@@ -95,4 +95,61 @@ body {
 	background-clip: text;
 	-webkit-text-fill-color: transparent;
 	font-size: 25px;
+}
+
+.types {
+	width: 66%;
+	margin-bottom: 50px;
+}
+
+.types h2 {
+	margin: 50px 0 25px 0;
+	width: 100%;
+	text-align: center;
+}
+.cards {
+	display: flex;
+	justify-content: space-between;
+	align-items: start;
+	flex-wrap: wrap;
+}
+
+.card {
+	width: 200px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.card img {
+	width: 200px;
+	height: auto;
+
+	border-radius: 15px;
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+.card p {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.quote {
+	width: 100%;
+	background-color: #c3c3c3;
+
+	display: flex;
+	justify-content: center;
+}
+
+.quote blockquote {
+	width: 50%;
+	font-family: fantasy;
+	font-size: 30px;
+	padding: 50px;
+}
+
+blockquote footer {
+	text-align: end;
+	font-weight: bolder;
 }
