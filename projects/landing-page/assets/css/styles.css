@@ -32,7 +32,7 @@ body {
 }
 .header ul {
 	display: flex;
-	gap: 10px;
+	gap: 30px;
 
 	list-style: none;
 }
@@ -41,10 +41,11 @@ body {
 	color: white;
 
 	font-size: 20px;
+	font-weight: bold;
 }
 
 .header a:hover {
-	color: #ffff00;
+	color: #da1aba;
 }
 
 .hero {
@@ -152,4 +153,43 @@ body {
 blockquote footer {
 	text-align: end;
 	font-weight: bolder;
+}
+
+.action {
+	width: 66%;
+	min-height: 90px;
+	background-color: #da1aba;
+	border-radius: 10px;
+	color: white;
+
+	margin: 50px;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 30px;
+}
+
+.action .text {
+	width: 66%;
+}
+
+.action a {
+	text-decoration: none;
+	color: white;
+	padding: 10px;
+	border: 1px solid white;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.footer {
+	background-color: #3b3b3b;
+	color: white;
+	font-size: 20px;
+	padding: 20px;
+	width: 100%;
+	text-align: center;
 }
