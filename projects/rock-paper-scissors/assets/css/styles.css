@@ -11,8 +11,14 @@ body {
 }
 
 .container {
-	width: 75%;
+	width: 80%;
+
 	display: flex;
+
+	padding: 20px;
+
+	border-radius: 20px;
+	background-color: #00000088;
 }
 #sheldon {
 	position: relative;
@@ -43,8 +49,6 @@ body {
 	color: white;
 	font-size: 1.25rem;
 	font-weight: bold;
-
-	text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.81);
 }
 
 #board p a:hover {
