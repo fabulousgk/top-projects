@@ -1,0 +1,112 @@
+body {
+	min-height: 100vh;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	background-image: url('../images/set.jpg');
+
+	font-family: sans-serif;
+}
+
+.container {
+	width: 75%;
+	display: flex;
+}
+#sheldon {
+	position: relative;
+}
+
+#sheldon img {
+	width: 75%;
+	height: auto;
+}
+
+#sheldon p {
+	width: 39%;
+	height: 22%;
+	position: absolute;
+	top: 6%;
+	left: 6%;
+}
+
+#board {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#board p a {
+	text-decoration: none;
+	color: white;
+	font-size: 1.25rem;
+	font-weight: bold;
+
+	text-shadow: 5px 5px 3px rgba(0, 0, 0, 0.81);
+}
+
+#board p a:hover {
+	text-decoration: none;
+	color: #6ab3f3;
+}
+
+#board img {
+	width: 100%;
+	height: auto;
+}
+
+#board div {
+	position: relative;
+}
+
+#rock {
+	width: 20%;
+	aspect-ratio: 1;
+
+	position: absolute;
+	right: 39%;
+	top: 1%;
+	cursor: pointer;
+}
+
+#lizard {
+	width: 20%;
+	aspect-ratio: 1;
+
+	position: absolute;
+	right: 1%;
+	top: 32%;
+	cursor: pointer;
+}
+
+#spock {
+	width: 20%;
+	aspect-ratio: 1;
+
+	position: absolute;
+	right: 17%;
+	bottom: 3%;
+	cursor: pointer;
+}
+
+#scissors {
+	width: 20%;
+	aspect-ratio: 1;
+
+	position: absolute;
+	left: 17%;
+	bottom: 3%;
+	cursor: pointer;
+}
+
+#paper {
+	width: 20%;
+	aspect-ratio: 1;
+
+	position: absolute;
+	left: 1%;
+	top: 32%;
+	cursor: pointer;
+}
