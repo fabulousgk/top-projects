@@ -65,7 +65,7 @@ body {
 	position: relative;
 }
 
-#rock {
+#Rock {
 	width: 20%;
 	aspect-ratio: 1;
 
@@ -75,7 +75,7 @@ body {
 	cursor: pointer;
 }
 
-#lizard {
+#Lizard {
 	width: 20%;
 	aspect-ratio: 1;
 
@@ -85,7 +85,7 @@ body {
 	cursor: pointer;
 }
 
-#spock {
+#Spock {
 	width: 20%;
 	aspect-ratio: 1;
 
@@ -95,7 +95,7 @@ body {
 	cursor: pointer;
 }
 
-#scissors {
+#Scissors {
 	width: 20%;
 	aspect-ratio: 1;
 
@@ -105,12 +105,13 @@ body {
 	cursor: pointer;
 }
 
-#paper {
+#Paper {
 	width: 20%;
 	aspect-ratio: 1;
 
 	position: absolute;
 	left: 1%;
 	top: 32%;
+
 	cursor: pointer;
 }
