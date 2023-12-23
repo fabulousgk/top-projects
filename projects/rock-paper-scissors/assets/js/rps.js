@@ -1,177 +1,91 @@
-const CHOICES = ['Rock', 'Paper', 'Scissors'];
-const LOOSE = 0;
-const WIN = 1;
-const TIE = 2;
+/* global textFit */
+
+const CHOICES = ['Rock', 'Paper', 'Scissors', 'Spock', 'Lizard'];
+
+const sheldonText = document.querySelector('#sheldon p');
+
+let playerScore = 0;
+let sheldonScore = 0;
 
 function getComputerChoice() {
 	return Math.floor(Math.random() * CHOICES.length);
 }
 
-function playRound(playerSelection, computerSelection) {
-	if (playerSelection === computerSelection) {
-		return TIE;
+function calculateResult(player1Choice, player2Choice) {
+	if (player1Choice === player2Choice) {
+		return 2;
 	}
 
 	// See https://medium.com/@jp.mfichtl/rock-paper-scissors-lizard-spock-or-why-math-is-awesome-for-coding-405dabe30f4
-	return ((playerSelection - computerSelection + CHOICES.length) % 3) % 2;
+	return (
+		((player1Choice - player2Choice + CHOICES.length) % CHOICES.length) % 2
+	);
 }
 
-function game() {
-	let playerScore = 0;
-	let computerScore = 0;
+function playRound(event) {
+	const sheldonChoice = getComputerChoice();
 
-	let playerChoice = Number(
-		// eslint-disable-next-line no-alert
-		prompt('Choose item by number - 1: Rock, 2: Paper, 3: Scissors'),
-	);
-	let computerChoice = getComputerChoice();
+	let result = '';
 
-	switch (playRound(playerChoice, computerChoice)) {
-		case LOOSE: {
-			console.log(
-				`You Loose! ${CHOICES[computerChoice]} beats ${CHOICES[playerChoice]}`,
-			);
-			computerScore++;
+	switch (calculateResult(CHOICES.indexOf(event.target.id), sheldonChoice)) {
+		case 1: {
+			playerScore++;
+			result = 'you win.';
 			break;
 		}
 
-		case WIN: {
-			console.log(
-				`You Win! ${CHOICES[playerChoice]} beats ${CHOICES[computerChoice]}`,
-			);
-			playerScore++;
+		case 0: {
+			sheldonScore++;
+			result = 'I win!';
 			break;
 		}
 
 		default: {
-			console.log('You choose the same items, its a tie.');
+			result = 'we tied.';
 			break;
 		}
 	}
 
-	playerChoice = Number(
-		// eslint-disable-next-line no-alert
-		prompt('Choose item by number - 1: Rock, 2: Paper, 3: Scissors'),
-	);
-	computerChoice = getComputerChoice();
-
-	switch (playRound(playerChoice, computerChoice)) {
-		case LOOSE: {
-			console.log(
-				`You Loose! ${CHOICES[computerChoice]} beats ${CHOICES[playerChoice]}`,
-			);
-			computerScore++;
-			break;
+	if (playerScore === 5) {
+		if (sheldonText) {
+			sheldonText.textContent = `I chose ${CHOICES[sheldonChoice]}, ${result}
+			The score is ${playerScore} to ${sheldonScore}. This is impossible, I can't loose. Choose again to start a new game.`;
+			textFit(sheldonText, {
+				alignHoriz: true,
+				alignVert: true,
+			});
 		}
 
-		case WIN: {
-			console.log(
-				`You Win! ${CHOICES[playerChoice]} beats ${CHOICES[computerChoice]}`,
-			);
-			playerScore++;
-			break;
+		playerScore = 0;
+		sheldonScore = 0;
+	} else if (sheldonScore === 5) {
+		if (sheldonText) {
+			sheldonText.textContent = `I chose ${CHOICES[sheldonChoice]}, ${result}
+			The score is ${playerScore} to ${sheldonScore}. Bazinga! My superior intellect beat you. Choose again to start a new game.`;
+			textFit(sheldonText, {
+				alignHoriz: true,
+				alignVert: true,
+			});
 		}
 
-		default: {
-			console.log('You choose the same items, its a tie.');
-			break;
-		}
-	}
-
-	playerChoice = Number(
-		// eslint-disable-next-line no-alert
-		prompt('Choose item by number - 1: Rock, 2: Paper, 3: Scissors'),
-	);
-	computerChoice = getComputerChoice();
-
-	switch (playRound(playerChoice, computerChoice)) {
-		case LOOSE: {
-			console.log(
-				`You Loose! ${CHOICES[computerChoice]} beats ${CHOICES[playerChoice]}`,
-			);
-			computerScore++;
-			break;
-		}
-
-		case WIN: {
-			console.log(
-				`You Win! ${CHOICES[playerChoice]} beats ${CHOICES[computerChoice]}`,
-			);
-			playerScore++;
-			break;
-		}
-
-		default: {
-			console.log('You choose the same items, its a tie.');
-			break;
-		}
-	}
-
-	playerChoice = Number(
-		// eslint-disable-next-line no-alert
-		prompt('Choose item by number - 1: Rock, 2: Paper, 3: Scissors'),
-	);
-	computerChoice = getComputerChoice();
-
-	switch (playRound(playerChoice, computerChoice)) {
-		case LOOSE: {
-			console.log(
-				`You Loose! ${CHOICES[computerChoice]} beats ${CHOICES[playerChoice]}`,
-			);
-			computerScore++;
-			break;
-		}
-
-		case WIN: {
-			console.log(
-				`You Win! ${CHOICES[playerChoice]} beats ${CHOICES[computerChoice]}`,
-			);
-			playerScore++;
-			break;
-		}
-
-		default: {
-			console.log('You choose the same items, its a tie.');
-			break;
-		}
-	}
-
-	playerChoice = Number(
-		// eslint-disable-next-line no-alert
-		prompt('Choose item by number - 1: Rock, 2: Paper, 3: Scissors'),
-	);
-	computerChoice = getComputerChoice();
-
-	switch (playRound(playerChoice, computerChoice)) {
-		case LOOSE: {
-			console.log(
-				`You Loose! ${CHOICES[computerChoice]} beats ${CHOICES[playerChoice]}`,
-			);
-			computerScore++;
-			break;
-		}
-
-		case WIN: {
-			console.log(
-				`You Win! ${CHOICES[playerChoice]} beats ${CHOICES[computerChoice]}`,
-			);
-			playerScore++;
-			break;
-		}
-
-		default: {
-			console.log('You choose the same items, its a tie.');
-			break;
-		}
-	}
-
-	if (playerScore > computerScore) {
-		console.log(`Congrats, you win.`);
-	} else if (playerScore < computerScore) {
-		console.log(`Oh no, you lost.`);
-	} else {
-		console.log('It is a tie game.');
+		playerScore = 0;
+		sheldonScore = 0;
+	} else if (sheldonText) {
+		sheldonText.textContent = `I chose ${CHOICES[sheldonChoice]}, ${result} The score is ${playerScore} to ${sheldonScore}. Choose again.`;
+		textFit(sheldonText, {
+			alignHoriz: true,
+			alignVert: true,
+		});
 	}
 }
 
-game();
+for (const element of document.querySelectorAll('.weapon')) {
+	element.addEventListener('click', playRound);
+}
+
+addEventListener('load', () => {
+	textFit(sheldonText, {
+		alignHoriz: true,
+		alignVert: true,
+	});
+});
