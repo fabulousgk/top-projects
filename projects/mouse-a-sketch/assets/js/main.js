@@ -25,7 +25,8 @@ document.querySelector('#grid-size')?.addEventListener('input', (event) => {
 });
 
 document.querySelector('#grid-size')?.addEventListener('change', (event) => {
+	document.querySelector('#grid-size-label').textContent = event.target.value;
 	generateGrid(event.target.value);
 });
 
-generateGrid(55);
+document.querySelector('#grid-size')?.dispatchEvent(new InputEvent('change'));
