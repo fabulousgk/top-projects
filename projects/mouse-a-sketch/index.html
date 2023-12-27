@@ -12,8 +12,25 @@
 		<div id="frame">
 			<h1>Mouse A Sketch®</h1>
 			<div id="sketch-area"></div>
+			<div id="settings-pane" class="hidden">
+				<h2>Settings</h2>
+				<label>
+					Grid Size (<span id="grid-size-label">45</span>)<br>
+					<input
+						id="grid-size"
+						type="range"
+						min="10"
+						max="100"
+						value="55"
+						step="1"
+						autocomplete="off"
+					>
+				</label>
+			</div>
 			<div id="controls">
-				<button class="knob"></button>
+				<button id="settings-button" class="knob">
+					<img src="./assets/images/settings.svg">
+				</button>
 				<button class="knob"></button>
 			</div>
 		</div>
