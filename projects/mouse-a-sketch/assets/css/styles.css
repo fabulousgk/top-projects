@@ -103,6 +103,13 @@ input {
 	margin-top: 5px;
 }
 
+fieldset {
+	display: flex;
+	flex-direction: column;
+
+	padding: 5px;
+	margin-bottom: 20px;
+}
 #controls {
 	width: 90%;
 	display: flex;

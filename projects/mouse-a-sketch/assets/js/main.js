@@ -1,4 +1,5 @@
 const sketchArea = document.querySelector('#sketch-area');
+let colorMode = 'normal';
 
 function generateGrid(size) {
 	sketchArea.textContent = '';
@@ -13,7 +14,13 @@ function generateGrid(size) {
 }
 
 function draw(event) {
-	event.target.style.backgroundColor = '#444444';
+	if (colorMode === 'normal') {
+		event.target.style.backgroundColor = '#444444';
+	} else {
+		event.target.style.backgroundColor = `rgb(${Math.floor(
+			Math.random() * 256,
+		)},${Math.floor(Math.random() * 256)},${Math.floor(Math.random() * 256)})`;
+	}
 }
 
 document.querySelector('#settings-button')?.addEventListener('click', () => {
@@ -34,5 +41,12 @@ document.querySelector('#grid-size')?.addEventListener('change', (event) => {
 	document.querySelector('#grid-size-label').textContent = event.target.value;
 	generateGrid(event.target.value);
 });
+
+const colorOptions = document.querySelectorAll('input[name=color-mode]');
+for (const option of colorOptions) {
+	option?.addEventListener('change', (event) => {
+		colorMode = event.target.value;
+	});
+}
 
 document.querySelector('#grid-size')?.dispatchEvent(new InputEvent('change'));
