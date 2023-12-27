@@ -19,6 +19,10 @@ body {
 	background-size: cover;
 }
 
+.hidden {
+	display: none !important;
+}
+
 #frame {
 	height: 90vh;
 	aspect-ratio: 1;
@@ -64,22 +68,39 @@ h1 {
 	-webkit-text-fill-color: transparent;
 }
 
-#sketch-area {
+#sketch-area,
+#settings-pane {
 	height: 80%;
 	aspect-ratio: 1;
 
-	display: flex;
-	flex-wrap: wrap;
-
 	background-color: #d9d9d9;
 
-	color: #555555;
+	color: #444444;
 	border-style: inset;
+}
+
+#sketch-area {
+	display: flex;
+	flex-wrap: wrap;
 }
 
 #sketch-area div {
 	aspect-ratio: 1 / 1;
 	height: auto;
+}
+
+#settings-pane {
+	padding: 10px;
+	font-family: sans-serif;
+}
+
+h2 {
+	margin-bottom: 20px;
+	border-bottom: 4px solid #555555;
+}
+
+input {
+	margin-top: 5px;
 }
 
 #controls {
@@ -89,7 +110,7 @@ h1 {
 	padding: 20px 0;
 }
 
-#controls .knob {
+.knob {
 	height: 5rem;
 	width: 5rem;
 
@@ -105,6 +126,10 @@ h1 {
 	cursor: pointer;
 }
 
+.knob img {
+	height: 75%;
+}
+
 footer {
 	width: 100%;
 
@@ -116,7 +141,7 @@ footer {
 	font-size: 1.25rem;
 	color: white;
 
-	background-color: #555555;
+	background-color: #444444;
 }
 
 footer a {
