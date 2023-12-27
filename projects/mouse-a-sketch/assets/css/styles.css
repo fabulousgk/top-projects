@@ -127,7 +127,8 @@ input {
 }
 
 .knob img {
-	height: 75%;
+	height: 66%;
+	width: auto;
 }
 
 footer {
