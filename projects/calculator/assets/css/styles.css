@@ -1,0 +1,165 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	background-image: url('../images/background.webp');
+	background-size: cover;
+}
+
+main {
+	flex: 1;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.calculator {
+	width: 60%;
+	max-width: 800px;
+	min-width: 500px;
+
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+
+	background-color: #69686e;
+	border: 10px ridge #434b45;
+}
+
+.screen-frame {
+	width: 50%;
+	aspect-ratio: 1;
+
+	flex-shrink: 0;
+
+	padding: 10px;
+	background-color: #69686e;
+}
+
+#screen {
+	aspect-ratio: 1;
+
+	padding: 10px;
+
+	display: flex;
+	flex-direction: column;
+
+	border: 12px inset black;
+	border-radius: 20px;
+
+	color: #01526f;
+
+	background-color: rgba(53, 161, 171, 0.8);
+}
+
+#screen div {
+	flex: 1;
+}
+.keypad {
+	width: 50%;
+	aspect-ratio: 1;
+
+	flex-shrink: 0;
+
+	display: flex;
+	flex-flow: row wrap;
+	gap: 15px;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	background-color: #4a4a4a;
+}
+
+.button-container {
+	width: 17%;
+	aspect-ratio: 1 / 0.65;
+
+	display: flex;
+
+	justify-content: center;
+
+	align-items: center;
+	background-color: black;
+	border-radius: 8px;
+}
+
+.enter {
+	width: calc(34% + 15px);
+	aspect-ratio: 1 / 0.33;
+}
+
+button {
+	height: 85%;
+	width: 85%;
+
+	padding: 4px;
+
+	font-size: 1.4vw;
+	font-weight: bold;
+	text-align: center;
+	color: white;
+
+	border-radius: 8px;
+	border: none;
+	box-shadow:
+		-2px -2px 10px rgba(0, 0, 0, 0.25) inset,
+		2px 2px 10px white inset;
+
+	background-color: #4a4a4a;
+}
+
+button:active {
+	box-shadow: #d6d6e7 0 3px 7px inset;
+	transform: translateY(2px);
+}
+
+.ac,
+.del {
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	color: #4a4a4a;
+	border-radius: 8px;
+	background-color: #3afbcc;
+}
+
+.del {
+	background-color: #eac5e7;
+}
+
+.enter button {
+	width: 93%;
+}
+
+footer {
+	padding: 10px;
+
+	color: white;
+	text-align: center;
+	font-family: sans-serif;
+
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+footer a {
+	text-decoration: none;
+	color: white;
+}
+
+footer a:hover {
+	color: rgba(53, 161, 171, 0.8);
+}
