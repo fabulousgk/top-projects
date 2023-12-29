@@ -70,6 +70,7 @@ main {
 .textFitted {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 .keypad {
 	width: 50%;
