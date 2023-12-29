@@ -16,9 +16,11 @@ function updateDisplay() {
 	}
 
 	if (entryMode) {
+		document.querySelector('#line1-indicator').textContent = '1▸ ';
 		document.querySelector('#line1-div .textFitted').style.justifyContent =
 			'start';
 	} else {
+		document.querySelector('#line1-indicator').textContent = '1:';
 		document.querySelector('#line1-div .textFitted')?.removeAttribute('style');
 	}
 
@@ -48,22 +50,67 @@ for (const button of document.querySelectorAll('button')) {
 	button.addEventListener('click', (event) => {
 		switch (event.currentTarget.value) {
 			case '+': {
+				if (calcStack.length >= 2) {
+					const result = Number(calcStack[1]) + Number(calcStack[0]);
+					calcStack.shift();
+					calcStack.shift();
+					calcStack.unshift(result);
+					entryMode = false;
+					updateDisplay();
+				}
+
 				break;
 			}
 
 			case '-': {
+				if (calcStack.length >= 2) {
+					const result = Number(calcStack[1]) - Number(calcStack[0]);
+					calcStack.shift();
+					calcStack.shift();
+					calcStack.unshift(result);
+					entryMode = false;
+					updateDisplay();
+				}
+
 				break;
 			}
 
 			case '*': {
+				if (calcStack.length >= 2) {
+					const result = Number(calcStack[1]) * Number(calcStack[0]);
+					calcStack.shift();
+					calcStack.shift();
+					calcStack.unshift(result);
+					entryMode = false;
+					updateDisplay();
+				}
+
 				break;
 			}
 
 			case '/': {
+				if (calcStack.length >= 2) {
+					const result = Number(calcStack[1]) / Number(calcStack[0]);
+					calcStack.shift();
+					calcStack.shift();
+					calcStack.unshift(result);
+					entryMode = false;
+					updateDisplay();
+				}
+
 				break;
 			}
 
 			case '^': {
+				if (calcStack.length >= 2) {
+					const result = Number(calcStack[1]) ** Number(calcStack[0]);
+					calcStack.shift();
+					calcStack.shift();
+					calcStack.unshift(result);
+					entryMode = false;
+					updateDisplay();
+				}
+
 				break;
 			}
 
