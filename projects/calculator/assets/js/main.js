@@ -26,11 +26,16 @@ function updateDisplay() {
 }
 
 function input(value) {
-	if (entryMode) {
-		calcStack[0] += value;
-	} else {
-		calcStack.unshift(value);
-		entryMode = true;
+	if (
+		value !== '0' ||
+		(entryMode && value === '0' && calcStack[0].length > 0)
+	) {
+		if (entryMode) {
+			calcStack[0] += value;
+		} else {
+			calcStack.unshift(value);
+			entryMode = true;
+		}
 	}
 
 	updateDisplay();
@@ -63,6 +68,16 @@ for (const button of document.querySelectorAll('button')) {
 			}
 
 			case '.': {
+				if (entryMode) {
+					if (calcStack[0].length === 0) {
+						input('0.');
+					} else if (calcStack[0].search(/\./) === -1) {
+						input('.');
+					}
+				} else {
+					input('0.');
+				}
+
 				break;
 			}
 
