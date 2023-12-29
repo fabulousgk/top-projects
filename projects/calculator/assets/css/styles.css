@@ -10,6 +10,8 @@ body {
 	flex-direction: column;
 	justify-content: space-between;
 
+	font-family: sans-serif;
+
 	background-image: url('../images/background.webp');
 	background-size: cover;
 }
@@ -63,6 +65,11 @@ main {
 
 #screen div {
 	flex: 1;
+}
+
+.textFitted {
+	display: flex;
+	justify-content: space-between;
 }
 .keypad {
 	width: 50%;
@@ -150,7 +157,6 @@ footer {
 
 	color: white;
 	text-align: center;
-	font-family: sans-serif;
 
 	background-color: rgba(0, 0, 0, 0.8);
 }
