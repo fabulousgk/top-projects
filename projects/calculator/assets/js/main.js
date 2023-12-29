@@ -16,11 +16,9 @@ function updateDisplay() {
 	}
 
 	if (entryMode) {
-		document.querySelector('#line1-indicator').textContent = '1►';
 		document.querySelector('#line1-div .textFitted').style.justifyContent =
 			'start';
 	} else {
-		document.querySelector('#line1-indicator').textContent = '1:';
 		document.querySelector('#line1-div .textFitted')?.removeAttribute('style');
 	}
 
@@ -69,10 +67,20 @@ for (const button of document.querySelectorAll('button')) {
 			}
 
 			case 'ac': {
+				calcStack.length = 0;
+				entryMode = false;
+				updateDisplay();
 				break;
 			}
 
 			case 'del': {
+				if (entryMode) {
+					calcStack[0] = calcStack[0].slice(0, -1);
+				} else {
+					entryMode = true;
+				}
+
+				updateDisplay();
 				break;
 			}
 
@@ -86,7 +94,6 @@ for (const button of document.querySelectorAll('button')) {
 			}
 
 			default: {
-				console.log(event.currentTarget.value);
 				input(event.currentTarget.value);
 				break;
 			}
