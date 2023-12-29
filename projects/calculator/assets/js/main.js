@@ -3,9 +3,7 @@
 function resizeText() {
 	const calcLines = document.querySelectorAll('#screen div');
 	for (const line of calcLines) {
-		textFit(line, {
-			alignVert: true,
-		});
+		textFit(line, {});
 	}
 }
 
