@@ -1,0 +1,294 @@
+@font-face {
+	font-family: Enchanted;
+	src: url(data:application/font-woff2;charset=utf-8;base64,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)
+		format('woff2');
+	font-style: normal;
+}
+
+@layer reset, utility, typography, theme;
+@layer reset {
+	/* 
+    This reset is based on Elad Shechter's The New CSS Reset (https://elad2412.github.io/the-new-css-reset/), to which 
+    I am deeply indebted. My changes are not a criticism of his work but a result of different philosophies and 
+    priorities. Please see my commit comments on GitHub if you are interested in my thoughts on the changes I made.
+  */
+	/*
+     Remove the styles set by the "User-Agent Stylesheet" using a 
+     zero-specificity selector.
+       - Exclude `svg *` since this is not meant to reset SVG rendering.
+       - Exclude media elements to prevent dimension attributes being stripped.
+       - Exclude `display` property since it is fundamental to layout (Opinionated)
+       - Exclude `outline` property to ensure accessibility. (Opinionated)
+       - Due to browser bugs:
+         - Exclude `html` - Chrome hyphenation bug
+         - Exclude `symbol *` - Firefox SVG sprite
+         - Exclude `div` & `span` - Chrome performance issue
+  */
+	*:where(
+			:not(html, div, span, img, iframe, canvas, svg, video, audio):not(
+					svg *,
+					symbol *
+				)
+		) {
+		all: unset;
+		list-style: none;
+		display: revert;
+		outline: revert;
+	}
+	/*
+    Reset placeholder text style (pseudo elements are not included in 
+    the main reset) 
+  */
+	::-moz-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	/* Use border-box sizing per industry standard (Opinionated) */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	/* Prevent iOS Safari resizing text in landscape*/
+	:where(html) {
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+	/* Set pointer on anchor and buttons since this is expected behavior */
+	:where(a, button) {
+		cursor: pointer;
+	}
+	/*
+    Constrain media elements to their parent (Opinionated) 
+    Set media elements to block (Opinionated)
+  */
+	:where(img, iframe, canvas, svg, video, audio) {
+		max-inline-size: 100%;
+		max-block-size: 100%;
+		display: block;
+	}
+	/* Revert the 'white-space' property for textarea elements on Safari */
+	:where(textarea) {
+		white-space: pre-wrap;
+	}
+	/* Set white-space for pre element so line spacing is kept */
+	:where(pre) {
+		white-space: pre;
+	}
+	/* Restore hidden attribute */
+	:where([hidden]) {
+		display: none;
+	}
+	/* Restore contenteditable attribute */
+	:where([contenteditable]:not([contenteditable='false'])) {
+		-moz-user-modify: read-write;
+		-webkit-user-modify: read-write;
+		-webkit-user-select: auto;
+		-moz-user-select: auto;
+		user-select: auto;
+	}
+	/* Restore draggable attribute */
+	:where([draggable='true']) {
+		-webkit-user-drag: element;
+	}
+	/* Restore dialog positioning */
+	:where(dialog) {
+		position: absolute;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		margin: auto;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+	:where(dialog:modal) {
+		position: fixed;
+		inset-block-start: 0;
+		inset-block-end: 0;
+		max-width: calc(100% - 6px - 2em);
+		max-height: calc(100% - 6px - 2em);
+	}
+	/* Remove details summary webkit styles */
+	::-webkit-details-marker {
+		display: none;
+	}
+}
+@layer typography {
+	/* WCAG guidelines stipulate a line height of 1.5 for body text.  However, this is not great for headers etc. 
+     This sets a default that is 1.5 for body text but smaller for bigger text. */
+	:root {
+		--font-sans: system-ui, sans-serif;
+		--font-slab: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif',
+			'Sitka Small', serif;
+		--font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+		--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+			Consolas, 'DejaVu Sans Mono', monospace;
+	}
+	* {
+		line-height: calc(1em + 0.5rem);
+	}
+	/* Use sans font stack by default*/
+	body {
+		font-family: var(--font-sans);
+	}
+	/* Monospaced font stack */
+	code,
+	.monospace {
+		font-family: var(--font-mono);
+	}
+	/* Set form elements to inherit font settings */
+	input,
+	button,
+	textarea,
+	select {
+		font: inherit;
+	}
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+}
+
+.left-pane {
+	flex: 0 0 450px;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+
+	background: #000000 center/cover url('../images/background.webp');
+}
+
+h1 {
+	width: 100%;
+	height: 10rem;
+	margin-top: 150px;
+	padding: 2.5rem;
+
+	font-family: Enchanted, serif;
+	font-size: 5rem;
+	color: white;
+
+	text-align: center;
+	background-color: #00000088;
+}
+
+.left-pane p {
+	color: white;
+}
+
+main {
+	flex: 1;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 30px;
+
+	background-color: #f2ebe8;
+}
+
+main p {
+	max-width: 66ch;
+
+	padding: 0 25px;
+
+	font-size: 1.25rem;
+	text-align: justify;
+}
+
+.magic-font {
+	font-family: Enchanted, serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	line-height: revert;
+}
+
+form {
+	height: 300px;
+	padding: 30px 25px;
+
+	background-color: white;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px;
+}
+
+button {
+	width: fit-content;
+
+	margin-left: 25px;
+	padding: 0.5em 1.5em;
+
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	font-family: Enchanted, serif;
+	font-size: 2rem;
+	font-weight: bold;
+	color: white;
+
+	background-color: #5e3d3a;
+	border: 3px solid #261214;
+	border-radius: 100px;
+
+	cursor: pointer;
+}
+
+button img {
+	height: 2rem;
+	width: revert;
+	display: inline;
+}
+
+label {
+	width: 40%;
+
+	margin-right: 20px;
+	margin-bottom: 10px;
+
+	display: inline-flex;
+	flex-direction: column;
+
+	font-weight: 700;
+}
+
+input {
+	height: 2em;
+
+	padding: 5px;
+
+	font-weight: 400;
+	color: #261214;
+
+	border: 1px solid #261214;
+}
+
+input::placeholder {
+	color: #5e3d3a88;
+}
+
+input:not(:placeholder-shown):invalid {
+	background-color: rgba(255, 38, 128, 0.25);
+}
+
+input:invalid {
+	border-color: rgb(255, 38, 128);
+}
+
+input:not(:placeholder-shown):valid {
+	border-color: rgb(163, 230, 13);
+}
+
+#color {
+	border-color: #261214;
+}
