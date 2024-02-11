@@ -317,21 +317,106 @@ nav {
 		gap: 10px;
 	}
 
-	a:hover {
-		color: #7ca6ff;
-	}
-
 	#easter:hover {
-		color: #fd441f;
+		color: rgb(255, 38, 128);
 	}
 
 	ul:last-child {
-		margin-top: auto;
+		margin-top: 20px;
 	}
 }
 
 main {
+	padding: 20px;
+
+	display: grid;
+	grid-template-columns: 5fr 2fr;
+	gap: 20px;
+
 	background-color: var(--color-grayscale-50);
+
+	h2 {
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+
+	h3 {
+		font-weight: bold;
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+	}
+
+	.card,
+	aside > div {
+		padding: 10px;
+
+		border-radius: 10px;
+
+		background-color: var(--color-grayscale-0);
+
+		box-shadow: 3px 3px 3px var(--color-grayscale-300);
+	}
+
+	.card {
+		border-left: 10px solid rgb(23, 191, 255);
+	}
+
+	.urgent {
+		border-left: 10px solid rgb(255, 38, 128);
+	}
+
+	aside > div {
+		margin-bottom: 15px;
+	}
+
+	.announcement {
+		border-bottom: 1px solid var(--color-grayscale-100);
+		padding-bottom: 5px;
+		margin-bottom: 5px;
+
+		&:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+
+		p {
+			font-size: 0.8rem;
+		}
+	}
+
+	.message {
+		margin-bottom: 10px;
+
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		align-items: center;
+		gap: 7px;
+
+		&:last-child {
+			margin-bottom: 0px;
+		}
+
+		img {
+			height: 50px;
+			width: auto;
+
+			border-radius: 100%;
+		}
+
+		.author {
+			font-size: 0.8rem;
+		}
+
+		h3 {
+			line-height: 1;
+			font-weight: normal;
+		}
+	}
 }
 
 .material-symbols-outlined {
@@ -341,4 +426,8 @@ main {
 		'wght' 400,
 		'GRAD' 0,
 		'opsz' 24;
+}
+
+a:hover {
+	color: rgb(23, 191, 255);
 }
