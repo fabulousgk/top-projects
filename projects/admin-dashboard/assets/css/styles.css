@@ -1,0 +1,344 @@
+@layer reset, utility, typography, theme;
+@layer reset {
+	/* 
+    This reset is based on Elad Shechter's The New CSS Reset (https://elad2412.github.io/the-new-css-reset/), to which 
+    I am deeply indebted. My changes are not a criticism of his work but a result of different philosophies and 
+    priorities. Please see my commit comments on GitHub if you are interested in my thoughts on the changes I made.
+  */
+	/*
+     Remove the styles set by the "User-Agent Stylesheet" using a 
+     zero-specificity selector.
+       - Exclude `svg *` since this is not meant to reset SVG rendering.
+       - Exclude media elements to prevent dimension attributes being stripped.
+       - Exclude `display` property since it is fundamental to layout (Opinionated)
+       - Exclude `outline` property to ensure accessibility. (Opinionated)
+       - Due to browser bugs:
+         - Exclude `html` - Chrome hyphenation bug
+         - Exclude `symbol *` - Firefox SVG sprite
+         - Exclude `div` & `span` - Chrome performance issue
+  */
+	*:where(
+			:not(html, div, span, img, iframe, canvas, svg, video, audio):not(
+					svg *,
+					symbol *
+				)
+		) {
+		all: unset;
+		list-style: none;
+		display: revert;
+		outline: revert;
+	}
+	/*
+    Reset placeholder text style (pseudo elements are not included in 
+    the main reset) 
+  */
+	::-moz-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	/* Use border-box sizing per industry standard (Opinionated) */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	/* Prevent iOS Safari resizing text in landscape*/
+	:where(html) {
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+	/* Set pointer on anchor and buttons since this is expected behavior */
+	:where(a, button) {
+		cursor: pointer;
+	}
+	/*
+    Constrain media elements to their parent (Opinionated) 
+    Set media elements to block (Opinionated)
+  */
+	:where(img, iframe, canvas, svg, video, audio) {
+		max-inline-size: 100%;
+		max-block-size: 100%;
+		display: block;
+	}
+	/* Revert the 'white-space' property for textarea elements on Safari */
+	:where(textarea) {
+		white-space: pre-wrap;
+	}
+	/* Set white-space for pre element so line spacing is kept */
+	:where(pre) {
+		white-space: pre;
+	}
+	/* Restore hidden attribute */
+	:where([hidden]) {
+		display: none;
+	}
+	/* Restore contenteditable attribute */
+	:where([contenteditable]:not([contenteditable='false'])) {
+		-moz-user-modify: read-write;
+		-webkit-user-modify: read-write;
+		-webkit-user-select: auto;
+		-moz-user-select: auto;
+		user-select: auto;
+	}
+	/* Restore draggable attribute */
+	:where([draggable='true']) {
+		-webkit-user-drag: element;
+	}
+	/* Restore dialog positioning */
+	:where(dialog) {
+		position: absolute;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		margin: auto;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+	:where(dialog:modal) {
+		position: fixed;
+		inset-block-start: 0;
+		inset-block-end: 0;
+		max-width: calc(100% - 6px - 2em);
+		max-height: calc(100% - 6px - 2em);
+	}
+	/* Remove details summary webkit styles */
+	::-webkit-details-marker {
+		display: none;
+	}
+}
+@layer typography {
+	/* WCAG guidelines stipulate a line height of 1.5 for body text.  However, this is not great for headers etc. 
+     This sets a default that is 1.5 for body text but smaller for bigger text. */
+	:root {
+		--font-sans: system-ui, sans-serif;
+		--font-slab: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif',
+			'Sitka Small', serif;
+		--font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+		--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+			Consolas, 'DejaVu Sans Mono', monospace;
+	}
+	* {
+		line-height: calc(1em + 0.5rem);
+	}
+	/* Use sans font stack by default*/
+	body {
+		font-family: var(--font-sans);
+	}
+	/* Monospaced font stack */
+	code,
+	.monospace {
+		font-family: var(--font-mono);
+	}
+	/* Set form elements to inherit font settings */
+	input,
+	button,
+	textarea,
+	select {
+		font: inherit;
+	}
+}
+
+@layer theme {
+	:root {
+		--color-grayscale-900: rgb(34, 34, 34);
+		--color-grayscale-800: rgb(51, 51, 51);
+		--color-grayscale-700: rgb(68, 68, 68);
+		--color-grayscale-600: rgb(87, 87, 87);
+		--color-grayscale-500: rgb(106, 106, 106);
+		--color-grayscale-400: rgb(126, 126, 126);
+		--color-grayscale-300: rgb(146, 146, 146);
+		--color-grayscale-200: rgb(167, 167, 167);
+		--color-grayscale-100: rgb(188, 188, 188);
+		--color-grayscale-50: rgb(210, 210, 210);
+		--color-grayscale-0: rgb(232, 232, 232);
+		--color-accent: #c11326;
+	}
+}
+
+body {
+	min-height: 100vh;
+
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	grid-template-rows: max-content 1fr;
+}
+
+header {
+	padding: 10px 40px;
+
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	align-items: center;
+	row-gap: 10px;
+	z-index: 1;
+
+	background-color: var(--color-grayscale-0);
+	box-shadow: 0px 5px 5px 0px var(--color-grayscale-100);
+
+	.searchbox {
+		height: 2rem;
+		width: 90%;
+
+		padding: 0.5rem;
+
+		grid-column: 1 / span 2;
+
+		display: flex;
+
+		background-color: white;
+		border-radius: 50px;
+
+		svg {
+			width: 2rem;
+		}
+
+		input {
+			width: 100%;
+		}
+
+		::placeholder {
+			color: var(--color-grayscale-500);
+		}
+	}
+
+	.profile {
+		justify-self: end;
+
+		display: grid;
+		align-items: center;
+		grid-template-columns: max-content max-content 1fr;
+		gap: 10px;
+
+		font-weight: bold;
+
+		img {
+			height: 50px;
+			width: auto;
+			border-radius: 100%;
+		}
+	}
+
+	.greeting {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		grid-template-rows: 1fr 1fr;
+		column-gap: 10px;
+
+		font-weight: bold;
+		font-size: 1.25rem;
+
+		span {
+			align-self: end;
+			font-weight: 400;
+			font-size: 0.9rem;
+		}
+		img {
+			height: 75px;
+			width: auto;
+
+			grid-row: 1 / -1;
+
+			border-radius: 100%;
+		}
+	}
+
+	.buttons {
+		grid-column: 2 / span 2;
+		justify-self: end;
+
+		button {
+			width: 125px;
+			padding: 0.5rem 0rem;
+
+			text-align: center;
+
+			color: white;
+			background-color: var(--color-grayscale-900);
+
+			border-radius: 50px;
+		}
+
+		button:hover {
+			background-color: var(--color-grayscale-700);
+		}
+	}
+}
+
+.sidebar {
+	padding: 0 30px;
+	grid-row: 1 / -1;
+
+	display: grid;
+	grid-template-rows: max-content 1fr;
+	align-content: start;
+	gap: 20px;
+
+	color: white;
+	background-color: var(--color-grayscale-700);
+}
+
+.logo {
+	margin: 30px 0;
+
+	display: flex;
+	align-items: center;
+
+	gap: 7px;
+
+	font-weight: 900;
+	font-size: 1.75rem;
+
+	img {
+		height: 50px;
+		width: auto;
+	}
+}
+
+nav {
+	padding-bottom: 20px;
+
+	display: grid;
+	grid-template-rows: repeat(3, max-content) 1fr;
+	gap: 20px;
+
+	font-size: 1.5rem;
+
+	a {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	a:hover {
+		color: #7ca6ff;
+	}
+
+	#easter:hover {
+		color: #fd441f;
+	}
+
+	ul:last-child {
+		margin-top: auto;
+	}
+}
+
+main {
+	background-color: var(--color-grayscale-50);
+}
+
+.material-symbols-outlined {
+	width: 1em;
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24;
+}
