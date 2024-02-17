@@ -1,0 +1,475 @@
+@layer reset, utility, typography, theme;
+@layer reset {
+	/* 
+    This reset is based on Elad Shechter's The New CSS Reset (https://elad2412.github.io/the-new-css-reset/), to which 
+    I am deeply indebted. My changes are not a criticism of his work but a result of different philosophies and 
+    priorities. Please see my commit comments on GitHub if you are interested in my thoughts on the changes I made.
+  */
+	/*
+     Remove the styles set by the "User-Agent Stylesheet" using a 
+     zero-specificity selector.
+       - Exclude `svg *` since this is not meant to reset SVG rendering.
+       - Exclude media elements to prevent dimension attributes being stripped.
+       - Exclude `display` property since it is fundamental to layout (Opinionated)
+       - Exclude `outline` property to ensure accessibility. (Opinionated)
+       - Due to browser bugs:
+         - Exclude `html` - Chrome hyphenation bug
+         - Exclude `symbol *` - Firefox SVG sprite
+         - Exclude `div` & `span` - Chrome performance issue
+  */
+	*:where(
+			:not(html, div, span, img, iframe, canvas, svg, video, audio):not(
+					svg *,
+					symbol *
+				)
+		) {
+		all: unset;
+		list-style: none;
+		display: revert;
+		outline: revert;
+	}
+	/*
+    Reset placeholder text style (pseudo elements are not included in 
+    the main reset) 
+  */
+	::-moz-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	/* Use border-box sizing per industry standard (Opinionated) */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	/* Prevent iOS Safari resizing text in landscape*/
+	:where(html) {
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+	/* Set pointer on anchor and buttons since this is expected behavior */
+	:where(a, button) {
+		cursor: pointer;
+	}
+	/*
+    Constrain media elements to their parent (Opinionated) 
+    Set media elements to block (Opinionated)
+  */
+	:where(img, iframe, canvas, svg, video, audio) {
+		max-inline-size: 100%;
+		max-block-size: 100%;
+		display: block;
+	}
+	/* Revert the 'white-space' property for textarea elements on Safari */
+	:where(textarea) {
+		white-space: pre-wrap;
+	}
+	/* Set white-space for pre element so line spacing is kept */
+	:where(pre) {
+		white-space: pre;
+	}
+	/* Restore hidden attribute */
+	:where([hidden]) {
+		display: none;
+	}
+	/* Restore contenteditable attribute */
+	:where([contenteditable]:not([contenteditable='false'])) {
+		-moz-user-modify: read-write;
+		-webkit-user-modify: read-write;
+		-webkit-user-select: auto;
+		-moz-user-select: auto;
+		user-select: auto;
+	}
+	/* Restore draggable attribute */
+	:where([draggable='true']) {
+		-webkit-user-drag: element;
+	}
+	/* Restore dialog positioning */
+	:where(dialog) {
+		position: absolute;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		margin: auto;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+	:where(dialog:modal) {
+		position: fixed;
+		inset-block-start: 0;
+		inset-block-end: 0;
+		max-width: calc(100% - 6px - 2em);
+		max-height: calc(100% - 6px - 2em);
+	}
+	/* Remove details summary webkit styles */
+	::-webkit-details-marker {
+		display: none;
+	}
+}
+@layer typography {
+	/* WCAG guidelines stipulate a line height of 1.5 for body text.  However, this is not great for headers etc. 
+     This sets a default that is 1.5 for body text but smaller for bigger text. */
+	:root {
+		--font-sans: system-ui, sans-serif;
+		--font-slab: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif',
+			'Sitka Small', serif;
+		--font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+		--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+			Consolas, 'DejaVu Sans Mono', monospace;
+	}
+	* {
+		line-height: calc(1em + 0.5rem);
+	}
+	/* Use sans font stack by default*/
+	body {
+		font-family: var(--font-sans);
+	}
+	/* Monospaced font stack */
+	code,
+	.monospace {
+		font-family: var(--font-mono);
+	}
+	/* Set form elements to inherit font settings */
+	input,
+	button,
+	textarea,
+	select {
+		font: inherit;
+	}
+}
+
+:root {
+	--spine-pyramid: linear-gradient(
+			315deg,
+			transparent 75%,
+			rgba(255, 255, 255, 0.1) 0
+		),
+		linear-gradient(45deg, transparent 75%, rgba(255, 255, 255, 0.1) 0),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.2) 166px, transparent 0),
+		linear-gradient(45deg, rgba(0, 0, 0, 0.1) 75%, transparent 0);
+
+	--spine-stairs: repeating-linear-gradient(
+			63deg,
+			rgba(255, 255, 255, 0.1),
+			rgba(255, 255, 255, 0.1) 1px,
+			transparent 3px,
+			transparent 0
+		),
+		linear-gradient(
+			127deg,
+			rgba(255, 255, 255, 0.1),
+			rgba(255, 255, 255, 0.1) 90px,
+			transparent 55%,
+			transparent 0
+		),
+		linear-gradient(transparent 51%, rgba(0, 0, 0, 0.1) 170px);
+
+	--spine-argyle: repeating-linear-gradient(
+			120deg,
+			rgba(255, 255, 255, 0.1),
+			rgba(255, 255, 255, 0.1) 1px,
+			transparent 1px,
+			transparent 60px
+		),
+		repeating-linear-gradient(
+			60deg,
+			rgba(255, 255, 255, 0.1),
+			rgba(255, 255, 255, 0.1) 1px,
+			transparent 1px,
+			transparent 60px
+		),
+		linear-gradient(
+			60deg,
+			rgba(0, 0, 0, 0.1) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(0, 0, 0, 0.1) 75%,
+			rgba(0, 0, 0, 0.1)
+		),
+		linear-gradient(
+			120deg,
+			rgba(0, 0, 0, 0.1) 25%,
+			transparent 25%,
+			transparent 75%,
+			rgba(0, 0, 0, 0.1) 75%,
+			rgba(0, 0, 0, 0.1)
+		);
+
+	--spine-tartan: repeating-linear-gradient(
+			transparent,
+			transparent 50px,
+			rgba(0, 0, 0, 0.4) 50px,
+			rgba(0, 0, 0, 0.4) 53px,
+			transparent 53px,
+			transparent 63px,
+			rgba(0, 0, 0, 0.4) 63px,
+			rgba(0, 0, 0, 0.4) 66px,
+			transparent 66px,
+			transparent 116px,
+			rgba(0, 0, 0, 0.5) 116px,
+			rgba(0, 0, 0, 0.5) 166px,
+			rgba(255, 255, 255, 0.2) 166px,
+			rgba(255, 255, 255, 0.2) 169px,
+			rgba(0, 0, 0, 0.5) 169px,
+			rgba(0, 0, 0, 0.5) 179px,
+			rgba(255, 255, 255, 0.2) 179px,
+			rgba(255, 255, 255, 0.2) 182px,
+			rgba(0, 0, 0, 0.5) 182px,
+			rgba(0, 0, 0, 0.5) 232px,
+			transparent 232px
+		),
+		repeating-linear-gradient(
+			270deg,
+			transparent,
+			transparent 50px,
+			rgba(0, 0, 0, 0.4) 50px,
+			rgba(0, 0, 0, 0.4) 53px,
+			transparent 53px,
+			transparent 63px,
+			rgba(0, 0, 0, 0.4) 63px,
+			rgba(0, 0, 0, 0.4) 66px,
+			transparent 66px,
+			transparent 116px,
+			rgba(0, 0, 0, 0.5) 116px,
+			rgba(0, 0, 0, 0.5) 166px,
+			rgba(255, 255, 255, 0.2) 166px,
+			rgba(255, 255, 255, 0.2) 169px,
+			rgba(0, 0, 0, 0.5) 169px,
+			rgba(0, 0, 0, 0.5) 179px,
+			rgba(255, 255, 255, 0.2) 179px,
+			rgba(255, 255, 255, 0.2) 182px,
+			rgba(0, 0, 0, 0.5) 182px,
+			rgba(0, 0, 0, 0.5) 232px,
+			transparent 232px
+		),
+		repeating-linear-gradient(
+			125deg,
+			transparent,
+			transparent 2px,
+			rgba(0, 0, 0, 0.2) 2px,
+			rgba(0, 0, 0, 0.2) 3px,
+			transparent 3px,
+			transparent 5px,
+			rgba(0, 0, 0, 0.2) 5px
+		);
+}
+
+body {
+	margin: 20px;
+
+	background: url('../images/library.jpg');
+	background-size: cover;
+}
+
+h1 img {
+	width: 66%;
+	height: auto;
+
+	margin: auto;
+}
+
+.case {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.shelf {
+	width: 600px;
+	height: 200px;
+
+	padding: 10px 40px;
+
+	display: flex;
+	justify-content: center;
+
+	background-image: url(../images/shelf.png);
+	background-position: bottom;
+	background-repeat: no-repeat;
+}
+
+.book {
+	height: 163px;
+	min-width: 50px;
+
+	padding: 2px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	color: #e5e4e2;
+	writing-mode: vertical-rl;
+	text-align: center;
+
+	line-height: 1;
+
+	background-color: #4d2b28;
+	border: 2px solid #261214;
+	background-image: var(--spine-pyramid);
+
+	cursor: pointer;
+}
+
+.blue {
+	background-color: #282e4d;
+	border: 2px solid #131226;
+}
+
+.green {
+	background-color: #2b5229;
+	border: 2px solid #122616;
+}
+
+.gold {
+	color: #f7cc74;
+}
+
+#new-book {
+	width: 150px;
+	height: auto;
+
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+
+	cursor: pointer;
+}
+
+dialog {
+	width: 615px;
+	height: 415px;
+
+	margin: auto;
+
+	background-color: #4d2b28;
+	border: 2px solid #261214;
+	border-radius: 10px;
+	perspective: 1100px;
+}
+
+form {
+	font-size: 20px;
+
+	transform: scale(-1, 1);
+
+	label {
+		display: flex;
+		flex-direction: column;
+		color: #4d2b28;
+		font-weight: bold;
+	}
+
+	.alt-input {
+		flex-direction: row;
+		align-items: center;
+	}
+
+	input {
+		margin-left: 10px;
+
+		color: revert;
+		font-size: 18px;
+		font-weight: normal;
+	}
+
+	:focus {
+		outline: 2px solid #4d2b28;
+	}
+
+	::placeholder {
+		color: #666666;
+	}
+
+	input[type='checkbox'] {
+		width: 1.15em;
+		height: 1.15em;
+
+		display: grid;
+		place-content: center;
+
+		border: 2px solid currentColor;
+		border-radius: 5px;
+	}
+
+	input[type='checkbox']::before {
+		content: '';
+		width: 0.65em;
+		height: 0.65em;
+		transform: scale(0);
+		transition: 120ms transform ease-in-out;
+		box-shadow: inset 1em 1em #4d2b28;
+		transform-origin: bottom left;
+		clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+	}
+
+	input[type='checkbox']:checked::before {
+		transform: scale(1);
+	}
+
+	button {
+		padding: 0.15em 0.5em;
+		color: #e5e4e2;
+		background-color: #4d2b28;
+		border: 2px solid #261214;
+		border-radius: 5px;
+	}
+
+	div {
+		display: flex;
+		gap: 10px;
+	}
+
+	.buttons {
+		margin-top: 20px;
+
+		display: flex;
+		justify-content: end;
+		gap: 20px;
+	}
+}
+
+.page {
+	width: 300px;
+	height: 400px;
+
+	padding: 15px;
+
+	display: flex;
+	align-items: center;
+
+	position: absolute;
+	top: 4px;
+	left: 4px;
+
+	background-color: #e9e6c4;
+
+	transform-origin: 100% 0;
+	border-radius: 5px 0 0 5px;
+	box-shadow:
+		inset 3px 0px 20px rgba(0, 0, 0, 0.2),
+		0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.page.right {
+	transform: rotateY(180deg);
+	z-index: 1;
+}
+
+.page.left {
+	transform: rotateY(45deg);
+	z-index: 1;
+}
+
+::backdrop {
+	background-color: #00000088;
+}
