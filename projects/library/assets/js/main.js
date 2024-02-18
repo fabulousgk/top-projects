@@ -13,6 +13,8 @@ function Book(title, author, pages, isRead = false) {
 	this.texture = textures[Math.floor(Math.random() * textures.length)];
 
 	this.fontColor = Math.floor(Math.random() >= 0.75) ? 'gold' : 'silver';
+
+	this.id = crypto.randomUUID();
 }
 
 function updateDisplay() {
@@ -32,6 +34,8 @@ function updateDisplay() {
 				bookGui.classList.add(book.color);
 				bookGui.classList.add(book.texture);
 				bookGui.classList.add(book.fontColor);
+				bookGui.setAttribute('id', book.id);
+				bookGui.addEventListener('click', (event) => showForm(event));
 
 				const temporaryShelf = document.createElement('div');
 				temporaryShelf.classList.add('shelf');
@@ -73,8 +77,24 @@ function addBook(title, author, pages, isRead) {
 	updateDisplay();
 }
 
-document
-	.querySelector('#new-book')
-	.addEventListener('click', () =>
-		document.querySelector('dialog').showModal(),
-	);
+function showForm(event) {
+	if (event) {
+		const book = library.find((item) => item.id === event.target.id);
+
+		document.querySelector('#title').value = book.title;
+		document.querySelector('#author').value = book.author;
+		document.querySelector('#pages').value = book.pages;
+		document.querySelector('#is-read').checked = book.isRead;
+
+		document.querySelector('#delete-book').hidden = false;
+	}
+
+	document.querySelector('dialog').showModal();
+}
+
+document.querySelector('#new-book').addEventListener('click', () => showForm());
+document.querySelector('#cancel').addEventListener('click', (event) => {
+	event.preventDefault();
+	document.querySelector('form').reset();
+	document.querySelector('dialog').close();
+});

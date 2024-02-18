@@ -429,7 +429,10 @@ form {
 
 	button {
 		padding: 0.15em 0.5em;
+
 		color: #e5e4e2;
+		font-size: 0.8em;
+
 		background-color: #4d2b28;
 		border: 2px solid #261214;
 		border-radius: 5px;
@@ -444,8 +447,12 @@ form {
 		margin-top: 20px;
 
 		display: flex;
-		justify-content: end;
-		gap: 20px;
+		justify-content: center;
+		gap: 10px;
+	}
+
+	#delete-book {
+		margin-left: 15px;
 	}
 }
 
