@@ -299,9 +299,8 @@ h1 img {
 
 .book {
 	height: 163px;
-	min-width: 50px;
 
-	padding: 2px;
+	padding: 2px 5px;
 
 	display: flex;
 	align-items: center;
@@ -332,6 +331,18 @@ h1 img {
 
 .gold {
 	color: #f7cc74;
+}
+
+.stairs {
+	background-image: var(--spine-stairs);
+}
+
+.argyle {
+	background-image: var(--spine-argyle);
+}
+
+.tartan {
+	background-image: var(--spine-tartan);
 }
 
 #new-book {
