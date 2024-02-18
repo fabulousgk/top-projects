@@ -36,6 +36,7 @@ function updateDisplay() {
 				bookGui.classList.add(book.fontColor);
 				bookGui.setAttribute('id', book.id);
 				bookGui.addEventListener('click', (event) => showForm(event));
+				bookGui.style = `min-width: ${24 + book.pages * 0.025}px`;
 
 				const temporaryShelf = document.createElement('div');
 				temporaryShelf.classList.add('shelf');
@@ -190,9 +191,27 @@ function sampleData() {
 	addBookManual('The Fault in Our Stars', 'John Green ', 313);
 	addBookManual("The Hitchhiker's Guide to the Galaxy", 'Douglas Adams', 193);
 	addBookManual('The Giving Tree', 'Shel Silverstein', 64);
-	addBookManual('Wuthering Heights', 'Emily Bront√´', 464);
+	addBookManual('Wuthering Heights', 'Emily Bronte´', 464);
 	addBookManual('The Da Vinci Code', 'Dan Brown', 489);
 	addBookManual('Memoirs of a Geisha', 'Arthur Golden', 503);
 	addBookManual('The Picture of Dorian Gray', 'Oscar Wilde', 272);
-	addBookManual('Jane Eyre', 'Charlotte Bront√', 532);
+	addBookManual('Jane Eyre', 'Charlotte Bronte', 532);
+	addBookManual('Les Miserables', 'Victor Hugo', 1463);
+	addBookManual('Fahrenheit 451', 'Ray Bradbury', 194);
+	addBookManual('Divergent', 'Veronica Roth', 487);
+	addBookManual('Lord of the Flies', 'William Golding', 182);
+	addBookManual('Romeo and Juliet', 'William Shakespeare', 301);
+	addBookManual('The Alchemist', 'Paulo Coelho', 182);
+	addBookManual('Crime and Punishment', 'Fyodor Dostoyevsky', 671);
+	addBookManual('The Perks of Being a Wallflower', 'Stephen Chbosky', 213);
+	addBookManual('The Great Gatsby', 'F. Scott Fitzgerald', 200);
+	addBookManual('City of Bones', 'Cassandra Clare', 485);
+	addBookManual("Ender's Game", 'Orson Scott Card', 324);
+	addBookManual('The Help', 'Kathryn Stockett', 451);
+	addBookManual('Anne of Green Gables', 'L.M. Montgomery', 320);
+	addBookManual("Harry Potter and the Sorcerer's Stone", 'J.K. Rowling', 309);
+	addBookManual('The Little Prince', 'Antoine de Saint-Exupery', 93);
+	addBookManual("Charlotte's Web", 'E.B. White', 184);
+	addBookManual('Of Mice and Men', 'John Steinbeck', 103);
+	addBookManual("The Time Traveler's Wife", 'Audrey Niffenegger', 500);
 }
