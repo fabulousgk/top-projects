@@ -155,3 +155,44 @@ document.querySelector('#delete-book').addEventListener('click', (event) => {
 	document.querySelector('dialog').close();
 	updateDisplay();
 });
+
+function addBookManual(title, author, pages) {
+	library.push(new Book(title, author, pages));
+	library.sort((a, b) => {
+		if (a.title.toLowerCase() < b.title.toLowerCase()) {
+			return -1;
+		}
+
+		if (a.title.toLowerCase() > b.title.toLowerCase()) {
+			return 1;
+		}
+
+		return 0;
+	});
+	updateDisplay();
+}
+
+// eslint-disable-next-line no-unused-vars
+function sampleData() {
+	addBookManual('The Hunger Games', 'Suzanne Collins', 374);
+	addBookManual(
+		'Harry Potter and the Order of the Phoenix',
+		'J.K. Rowling',
+		870,
+	);
+	addBookManual('To Kill a Mockingbird', 'Harper Lee', 324);
+	addBookManual('Pride and Prejudice', 'Jane Austen', 279);
+	addBookManual('Twilight', 'Stephenie Meyer', 501);
+	addBookManual('The Book Thief', 'Markus Zusa', 552);
+	addBookManual('Animal Farm', 'George Orwell', 141);
+	addBookManual('The Chronicles of Narnia', 'C.S. Lewis', 767);
+	addBookManual('Gone with the Wind', 'Margaret Mitchell', 1037);
+	addBookManual('The Fault in Our Stars', 'John Green ', 313);
+	addBookManual("The Hitchhiker's Guide to the Galaxy", 'Douglas Adams', 193);
+	addBookManual('The Giving Tree', 'Shel Silverstein', 64);
+	addBookManual('Wuthering Heights', 'Emily Bront√´', 464);
+	addBookManual('The Da Vinci Code', 'Dan Brown', 489);
+	addBookManual('Memoirs of a Geisha', 'Arthur Golden', 503);
+	addBookManual('The Picture of Dorian Gray', 'Oscar Wilde', 272);
+	addBookManual('Jane Eyre', 'Charlotte Bront√', 532);
+}
