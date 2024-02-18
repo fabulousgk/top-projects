@@ -129,7 +129,7 @@ document.querySelector('#cancel').addEventListener('click', (event) => {
 	document.querySelector('form').reset();
 	document.querySelector('dialog').close();
 });
-document.querySelector('#add-book').addEventListener('click', (event) => {
+document.querySelector('form').addEventListener('submit', (event) => {
 	event.preventDefault();
 
 	if (document.querySelector('#book-id').value === '') {
