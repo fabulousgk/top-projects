@@ -60,8 +60,12 @@ function updateDisplay() {
 	}
 }
 
-// eslint-disable-next-line no-unused-vars
-function addBook(title, author, pages, isRead) {
+function addBook() {
+	const title = document.querySelector('#title').value;
+	const author = document.querySelector('#author').value;
+	const pages = document.querySelector('#pages').value;
+	const isRead = document.querySelector('#is-read').checked;
+
 	library.push(new Book(title, author, pages, isRead));
 	library.sort((a, b) => {
 		if (a.title.toLowerCase() < b.title.toLowerCase()) {
@@ -77,7 +81,32 @@ function addBook(title, author, pages, isRead) {
 	updateDisplay();
 }
 
+function updateBook() {
+	const id = document.querySelector('#book-id').value;
+
+	const book = library.find((item) => item.id === id);
+	book.title = document.querySelector('#title').value;
+	book.author = document.querySelector('#author').value;
+	book.pages = document.querySelector('#pages').value;
+	book.isRead = document.querySelector('#is-read').checked;
+
+	library.sort((a, b) => {
+		if (a.title.toLowerCase() < b.title.toLowerCase()) {
+			return -1;
+		}
+
+		if (a.title.toLowerCase() > b.title.toLowerCase()) {
+			return 1;
+		}
+
+		return 0;
+	});
+	updateDisplay();
+}
+
 function showForm(event) {
+	document.querySelector('#add-book').textContent = 'Add Book';
+
 	if (event) {
 		const book = library.find((item) => item.id === event.target.id);
 
@@ -85,8 +114,9 @@ function showForm(event) {
 		document.querySelector('#author').value = book.author;
 		document.querySelector('#pages').value = book.pages;
 		document.querySelector('#is-read').checked = book.isRead;
-
+		document.querySelector('#book-id').value = book.id;
 		document.querySelector('#delete-book').hidden = false;
+		document.querySelector('#add-book').textContent = 'Update Book';
 	}
 
 	document.querySelector('dialog').showModal();
@@ -95,6 +125,33 @@ function showForm(event) {
 document.querySelector('#new-book').addEventListener('click', () => showForm());
 document.querySelector('#cancel').addEventListener('click', (event) => {
 	event.preventDefault();
+	document.querySelector('#book-id').value = '';
 	document.querySelector('form').reset();
 	document.querySelector('dialog').close();
+});
+document.querySelector('#add-book').addEventListener('click', (event) => {
+	event.preventDefault();
+
+	if (document.querySelector('#book-id').value === '') {
+		addBook();
+	} else {
+		updateBook();
+	}
+
+	document.querySelector('#book-id').value = '';
+	document.querySelector('form').reset();
+	document.querySelector('dialog').close();
+});
+document.querySelector('#delete-book').addEventListener('click', (event) => {
+	event.preventDefault();
+
+	const index = library.findIndex(
+		(item) => item.id === document.querySelector('#book-id').value,
+	);
+	library.splice(index, 1);
+
+	document.querySelector('#book-id').value = '';
+	document.querySelector('form').reset();
+	document.querySelector('dialog').close();
+	updateDisplay();
 });
