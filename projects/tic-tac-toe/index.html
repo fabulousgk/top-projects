@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta data-order="8">
+
+		<title>Tic-Tac-Toe</title>
+
+		<link rel="stylesheet" href="./assets/css/styles.css">
+		<script src="./assets/js/main.js" defer></script>
+	</head>
+	<body>
+		<nav>
+			<p id="joshua-text">Shall we play a game?</p>
+			<div class="controls">
+				<div class="button-frame large-button">
+					<button id="activate-ai">ACTIVATE AI</button>
+				</div>
+
+				<div class="button-frame small-button">
+					<button id="reset">RESET</button>
+				</div>
+				<div class="button-frame small-button">
+					<button id="clear-scores">CLR SCR</button>
+				</div>
+			</div>
+		</nav>
+		<main>
+			<div id="gameboard">
+				<div data-row="0" data-col="0"></div>
+				<div data-row="0" data-col="1"></div>
+				<div data-row="0" data-col="2"></div>
+				<div data-row="1" data-col="0"></div>
+				<div data-row="1" data-col="1"></div>
+				<div data-row="1" data-col="2"></div>
+				<div data-row="2" data-col="0"></div>
+				<div data-row="2" data-col="1"></div>
+				<div data-row="2" data-col="2"></div>
+			</div>
+
+			<div id="scores">
+				<div>
+					<p>PLY1</p>
+					<p id="player1-score">0</p>
+				</div>
+				<div>
+					<p>PLY2</p>
+					<p id="player2-score">0</p>
+				</div>
+				<div>
+					<p>JSH</p>
+					<p id="joshua-score">0</p>
+				</div>
+				<div>
+					<p>TIE</p>
+					<p id="tie-score">0</p>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

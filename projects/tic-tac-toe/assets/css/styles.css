@@ -1,0 +1,316 @@
+@layer reset, utility, typography, theme;
+@layer reset {
+	/*
+    This reset is based on Elad Shechter's The New CSS Reset (https://elad2412.github.io/the-new-css-reset/), to which
+    I am deeply indebted. My changes are not a criticism of his work but a result of different philosophies and
+    priorities. Please see my commit comments on GitHub if you are interested in my thoughts on the changes I made.
+  */
+	/*
+     Remove the styles set by the "User-Agent Stylesheet" using a
+     zero-specificity selector.
+       - Exclude `svg *` since this is not meant to reset SVG rendering.
+       - Exclude media elements to prevent dimension attributes being stripped.
+       - Exclude `display` property since it is fundamental to layout (Opinionated)
+       - Exclude `outline` property to ensure accessibility. (Opinionated)
+       - Due to browser bugs:
+         - Exclude `html` - Chrome hyphenation bug
+         - Exclude `symbol *` - Firefox SVG sprite
+         - Exclude `div` & `span` - Chrome performance issue
+  */
+	*:where(
+			:not(html, div, span, img, iframe, canvas, svg, video, audio):not(
+					svg *,
+					symbol *
+				)
+		) {
+		all: unset;
+		list-style: none;
+		display: revert;
+		outline: revert;
+	}
+	/*
+    Reset placeholder text style (pseudo elements are not included in
+    the main reset)
+  */
+	::-moz-placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	::placeholder {
+		color: unset;
+		opacity: unset;
+	}
+	/* Use border-box sizing per industry standard (Opinionated) */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	/* Prevent iOS Safari resizing text in landscape*/
+	:where(html) {
+		-webkit-text-size-adjust: none;
+		-moz-text-size-adjust: none;
+		text-size-adjust: none;
+	}
+	/* Set pointer on anchor and buttons since this is expected behavior */
+	:where(a, button) {
+		cursor: pointer;
+	}
+	/*
+    Constrain media elements to their parent (Opinionated)
+    Set media elements to block (Opinionated)
+  */
+	:where(img, iframe, canvas, svg, video, audio) {
+		max-inline-size: 100%;
+		max-block-size: 100%;
+		display: block;
+	}
+	/* Revert the 'white-space' property for textarea elements on Safari */
+	:where(textarea) {
+		white-space: pre-wrap;
+	}
+	/* Set white-space for pre element so line spacing is kept */
+	:where(pre) {
+		white-space: pre;
+	}
+	/* Restore hidden attribute */
+	:where([hidden]) {
+		display: none;
+	}
+	/* Restore contenteditable attribute */
+	:where([contenteditable]:not([contenteditable='false'])) {
+		-moz-user-modify: read-write;
+		-webkit-user-modify: read-write;
+		-webkit-user-select: auto;
+		-moz-user-select: auto;
+		user-select: auto;
+	}
+	/* Restore draggable attribute */
+	:where([draggable='true']) {
+		-webkit-user-drag: element;
+	}
+	/* Restore dialog positioning */
+	:where(dialog) {
+		position: absolute;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		margin: auto;
+		width: -webkit-fit-content;
+		width: -moz-fit-content;
+		width: fit-content;
+		height: -webkit-fit-content;
+		height: -moz-fit-content;
+		height: fit-content;
+	}
+	:where(dialog:modal) {
+		position: fixed;
+		inset-block-start: 0;
+		inset-block-end: 0;
+		max-width: calc(100% - 6px - 2em);
+		max-height: calc(100% - 6px - 2em);
+	}
+	/* Remove details summary webkit styles */
+	::-webkit-details-marker {
+		display: none;
+	}
+}
+@layer typography {
+	/* WCAG guidelines stipulate a line height of 1.5 for body text.  However, this is not great for headers etc.
+     This sets a default that is 1.5 for body text but smaller for bigger text. */
+	:root {
+		--font-sans: system-ui, sans-serif;
+		--font-slab: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif',
+			'Sitka Small', serif;
+		--font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+		--font-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+			Consolas, 'DejaVu Sans Mono', monospace;
+	}
+	* {
+		line-height: calc(1em + 0.5rem);
+	}
+	/* Use sans font stack by default*/
+	body {
+		font-family: var(--font-sans);
+	}
+	/* Monospaced font stack */
+	code,
+	.monospace {
+		font-family: var(--font-mono);
+	}
+	/* Set form elements to inherit font settings */
+	input,
+	button,
+	textarea,
+	select {
+		font: inherit;
+	}
+}
+
+@font-face {
+	font-family: 'WOPR';
+	src: url('../fonts/wopr-tweaked.woff') format('woff');
+}
+:focus {
+	outline: revert;
+}
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+		'Courier New', monospace;
+}
+nav {
+	width: 225px;
+	min-width: 225px;
+	background-color: #dddbca;
+	border: 10px solid #bbc9b2;
+}
+nav #joshua-text {
+	margin-bottom: 25px;
+	padding: 10px;
+	padding-top: 20px;
+	height: clamp(225px, 33%, 33%);
+	font-family: WOPR;
+	font-size: 0.7rem;
+	color: #35a1fb;
+	background-color: #1a1a1a;
+	border: 3px solid white;
+	-webkit-box-shadow: inset 0 0 15px #ffffff;
+	box-shadow: inset 0 0 15px #ffffff;
+}
+nav .controls {
+	width: 75%;
+	margin: auto;
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
+}
+nav .button-frame {
+	border: 5px solid #bab2a9;
+}
+nav .large-button {
+	width: 100%;
+	height: 80px;
+	margin: auto;
+	-ms-grid-column-span: 2;
+	grid-column: span 2;
+}
+nav .small-button {
+	width: 100%;
+	height: 80px;
+	margin: auto;
+}
+nav #activate-ai {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	background-color: #e67c7a;
+}
+nav #activate-ai:hover {
+	background-color: #ff2626;
+}
+nav #activate-ai.active {
+	background-color: #ff2626;
+}
+nav #activate-ai.active:hover {
+	background-color: #e67c7a;
+}
+nav #reset {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	background-color: #668277;
+}
+nav #reset:hover {
+	background-color: #2fc88b;
+}
+nav #clear-scores {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border-top: 2px solid black;
+	border-bottom: 2px solid black;
+	background-color: #9f7b00;
+}
+nav #clear-scores:hover {
+	background-color: #f4e620;
+}
+main {
+	height: 100%;
+	padding: 20px;
+	-webkit-box-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	background-color: #1a1a1a;
+}
+main #gameboard {
+	max-width: 80vh;
+	width: 100%;
+	margin: auto;
+	display: -ms-grid;
+	display: grid;
+	-ms-grid-columns: 1fr 15px 1fr 15px 1fr;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 15px;
+	background-color: #35a1fb;
+	border: 3px solid white;
+	-webkit-box-shadow: inset 0 0 15px #ffffff;
+	box-shadow: inset 0 0 15px #ffffff;
+}
+main #gameboard div {
+	aspect-ratio: 1/1;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: #020f25;
+}
+main #gameboard div img {
+	height: 90%;
+	width: 90%;
+}
+main #scores {
+	-webkit-box-flex: 0;
+	-ms-flex: 0;
+	flex: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+}
+main #scores div {
+	padding: 10px;
+	text-align: center;
+}
+main #scores div p:first-child {
+	margin-bottom: 5px;
+	color: white;
+}
+main #scores div p:nth-child(2) {
+	font-family: WOPR;
+	color: #d57e6a;
+}
