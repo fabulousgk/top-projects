@@ -73,6 +73,7 @@ h1 {
 	height: 80%;
 	aspect-ratio: 1;
 
+	flex: 1;
 	background-color: #d9d9d9;
 
 	color: #444444;
